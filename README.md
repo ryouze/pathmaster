@@ -49,7 +49,7 @@ target_link_libraries(<your-target> PRIVATE pathmaster)
 const std::filesystem::path vocabulary = pathmaster::get_executable_path().parent_path() / "vocabulary.json";
 ```
 
-Under the hood, pathmaster uses platform-specific code (e.g., `_NSGetExecutablePath`). If a platform is not supported, it will throw an exception. I aim to support the big three: MacOS, GNU/Linux, and Windows.
+Under the hood, pathmaster uses platform-specific code (e.g., `_NSGetExecutablePath`). If a platform is not supported, an exception will be thrown. I aim to support the big three: MacOS, GNU/Linux, and Windows.
 
 
 ## Features
@@ -121,6 +121,31 @@ If your platform is supported, this should print the absolute path to the curren
 ```bash
 Executable path: "/Users/hikari/Github/example/build/example"
 Directory path: "/Users/hikari/Github/example/build"
+```
+
+On failure, a `PathMasterError` exception will be thrown. You can catch it and print the error message.
+
+```cpp
+#include <cstdlib>     // for EXIT_FAILURE
+#include <filesystem>  // for std::filesystem
+#include <iostream>    // for std::cout, std::cerr
+#include <string>      // for std::string
+
+#include <pathmaster/pathmaster.hpp>
+
+int main()
+{
+    try {
+        const std::filesystem::path executable_path = pathmaster::get_executable_path();
+        std::cout << "Executable path: " << executable_path << '\n';
+        std::cout << "Directory path: " << executable_path.parent_path() << '\n';
+    }
+    catch (const pathmaster::PathMasterError &e) {
+        std::cerr << std::string(e.what()) + '\n';
+        return EXIT_FAILURE;
+    }
+    return 0;
+}
 ```
 
 
