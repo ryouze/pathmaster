@@ -17,7 +17,7 @@
 #include <mach-o/dyld.h>    // for _NSGetExecutablePath
 #include <sys/syslimits.h>  // for PATH_MAX
 #elif defined(_WIN32)
-#include <windows.h>  // for GetModuleFileNameW, DWORD, MAX_PATH
+#include <windows.h>  // for GetModuleFileNameW, DWORD
 #endif
 
 /**
