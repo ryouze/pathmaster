@@ -36,7 +36,7 @@ include(FetchContent)
 FetchContent_Declare(pathmaster
     GIT_REPOSITORY https://github.com/ryouze/pathmaster.git
     GIT_TAG        main
-    EXCLUDE_FROM_ALL
+    GIT_SHALLOW    TRUE
 )
 FetchContent_MakeAvailable(pathmaster)
 
@@ -91,7 +91,7 @@ Follow these steps to use the library in your project:
     FetchContent_Declare(pathmaster
       GIT_REPOSITORY https://github.com/ryouze/pathmaster.git
       GIT_TAG        main
-      EXCLUDE_FROM_ALL
+      GIT_SHALLOW    TRUE
     )
     FetchContent_MakeAvailable(pathmaster)
 
