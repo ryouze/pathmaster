@@ -156,11 +156,13 @@ int main()
 Follow these steps to build the test executable:
 
 1. **Clone the repository**:
+
     ```bash
     git clone https://github.com/ryouze/pathmaster.git
     ```
 
 2. **Generate the build system**:
+
     ```bash
     cd pathmaster
     mkdir build && cd build
@@ -168,8 +170,23 @@ Follow these steps to build the test executable:
     ```
 
 3. **Compile the test executable**:
+
+    To compile the test executable, use the following command:
+
     ```bash
-    make -j
+    make
+    ```
+
+    To use all available cores with `make`, pass the `-j` flag with the number of cores available on your system:
+
+    ```bash
+    # MacOS
+    make -j$(sysctl -n hw.ncpu)
+    ```
+
+    ```bash
+    # GNU/Linux
+    make -j$(nproc)
     ```
 
 After successful compilation, you can run the test executable using `./pathmaster_test`.
